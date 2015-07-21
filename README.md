@@ -1,1 +1,5 @@
-Script Greasemonkey para adicionar links da [Fundamentus](http://fundamentus.com.br/) às ações sugeridas pela [Rico.com.vc](https://www.rico.com.vc).
+Script Greasemonkey para adicionar links da [Fundamentus](http://fundamentus.com.br/) às ações sugeridas pela [Rico.com.vc](https://www.rico.com.vc). Ele cria um botão no menu lateral para efetivamente acrescentar os links nas páginas sugerindo carteiras de ações. 
+
+Idealmente um botão não seria necessário. O negócio é que a Rico usa Angular para montar a página, e até onde sei minhas opções eram fazer o script se infiltrar no ciclo de vida do app Angular, ou forçar o código que muda a DOM a rodar apenas após o término do processamento do Angular. Acredito que isso possa ser detectado capturando-se o evento `cfpLoadingBar:completed`, mas eu não vi como fazer isso de fora do Angular. Então a solução mais simples foi criar um botão que faria a modificação quando o usuário pressioná-lo, o que acontecerá (espero :)) naturalmente após Angular terminar de processar a página.
+
+Estou aberto a alternativas, mas não tenho muita disposição para enfiar as mãos nas entranhas do Angular mais do que eu preciso :)
