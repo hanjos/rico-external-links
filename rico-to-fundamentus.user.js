@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  Adiciona links para a Fundamentus ao se clicar um botão Add links to Fundamentus.
 // @author       Humberto S. N. dos Anjos
-// @match        https://www.rico.com.vc/dashboard/analises/*
+// @match        https://www.rico.com.vc/*
 // @grant        none
 // ==/UserScript==
 
