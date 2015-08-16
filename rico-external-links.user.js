@@ -14,20 +14,20 @@ location.replace("javascript:(" + function() {
   window.linkToFundamentus = function() {
     $("tr[ng-repeat=\"stock in recommendation.portfolio | tablesortOrderBy:sortFun\"]>td:nth-child(2)")
     .each(function (v, i) {
-      $(this).html("<a href='http://fundamentus.com.br/detalhes.php?papel=" + $(this).text() + "'>" + $(this).html() + "</a>")
+      $(this).html("<a href='http://fundamentus.com.br/detalhes.php?papel=" + $(this).text() + "'>" + $(this).text() + "</a>")
     });
   };
 
   window.linkToBastter = function() {
     $("tr[ng-repeat=\"stock in recommendation.portfolio | tablesortOrderBy:sortFun\"]>td:nth-child(2)")
     .each(function (v, i) {
-      $(this).html("<a href='http://www.bastter.com/mercado/acao/" + $(this).text() + ".aspx'>" + $(this).html() + "</a>")
+      $(this).html("<a href='http://www.bastter.com/mercado/acao/" + $(this).text() + ".aspx'>" + $(this).text() + "</a>")
     });
   };
 } + ")();");
 
-var fundamentusButton = "<button onclick='linkToFundamentus()' class='btn-round btn-blue btn-block no-padding-left no-padding-right'>+Fundamentus</button>";
-var bastterButton = "<button onclick='linkToBastter()' class='btn-round btn-green btn-block no-padding-left no-padding-right'>+Bastter</button>";
+var fundamentusButton = "<button onclick='linkToFundamentus()' class='btn-round btn-blue btn-block no-padding-left no-padding-right'>+ Fundamentus</button>";
+var bastterButton = "<button onclick='linkToBastter()' class='btn-round btn-green btn-block no-padding-left no-padding-right'>+ Bastter</button>";
 
 // Só tente adicionar os botões após o documento terminar de carregar
 $(document).ready(function () {
