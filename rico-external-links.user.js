@@ -27,7 +27,7 @@ location.replace("javascript:(" + function() {
 } + ")();");
 
 var fundamentusButton = "<button onclick='linkToFundamentus()' class='btn-round btn-blue btn-block no-padding-left no-padding-right'>+ Fundamentus</button>";
-var bastterButton = "<button onclick='linkToBastter()' class='btn-round btn-green btn-block no-padding-left no-padding-right'>+ Bastter</button>";
+var bastterButton = "<button onclick='linkToBastter()' class='btn-round btn-gray-light btn-block no-padding-left no-padding-right'>+ Bastter</button>";
 
 // Só tente adicionar os botões após o documento terminar de carregar
 $(document).ready(function () {
