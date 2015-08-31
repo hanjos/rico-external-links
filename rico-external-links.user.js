@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         External links for Rico.com.vc
 // @namespace    https://www.rico.com.vc
-// @version      0.3
+// @version      0.4
 // @description  Cria botões que adicionam links para análises de papéis e empresas específicas. Por enquanto são suportadas Fundamentus e Bastter.
 // @author       Humberto S. N. dos Anjos
 // @match        https://www.rico.com.vc/*
@@ -21,6 +21,11 @@ location.replace("javascript:(" + function() {
     .each(function (v, i) {
       $(this).html("<a href='http://fundamentus.com.br/detalhes.php?papel=" + $(this).text() + "'>" + $(this).text() + "</a>")
     });
+
+    $("tr[ng-repeat=\"currentPosition in customerPosition.positions | tablesortOrderBy:sortFun\"]>td:nth-child(1)")
+    .each(function (v, i) {
+      $(this).html("<a href='http://fundamentus.com.br/detalhes.php?papel=" + $(this).text() + "'>" + $(this).text() + "</a>")
+    });
   };
 
   window.linkToBastter = function() {
@@ -32,6 +37,11 @@ location.replace("javascript:(" + function() {
     $("tbody[ng-repeat=\"currentPosition in customerPosition.positions\"]>tr>td:nth-child(1)")
     .each(function (v, i) {
       $(this).html("<a href='http://www.bastter.com/mercado/acao/" + $(this).text() + ".aspx'>" + $(this).text() + "</a>")
+    });
+
+    $("tr[ng-repeat=\"currentPosition in customerPosition.positions | tablesortOrderBy:sortFun\"]>td:nth-child(1)")
+    .each(function (v, i) {
+      $(this).html("<a href='http://fundamentus.com.br/detalhes.php?papel=" + $(this).text() + "'>" + $(this).text() + "</a>")
     });
   };
 } + ")();");
