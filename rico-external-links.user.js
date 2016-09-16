@@ -11,47 +11,34 @@
 // Usando o location hack (http://wiki.greasespot.net/Location_hack) para injetar
 // funções no escopo global
 location.replace("javascript:(" + function() {
-  window.linkToFundamentus = function() {
-    $("tr[ng-repeat=\"stock in recommendation.portfolio | tablesortOrderBy:sortFun\"]>td:nth-child(2)")
-    .each(function (v, i) {
-      $(this).html("<a href='http://fundamentus.com.br/detalhes.php?papel=" + $(this).text() + "'>" + $(this).text() + "</a>")
+  window.makeExternalLinks = function() {
+    /* recomendações de compra */
+    $("div[ng-repeat=\"stock in recommendation.portfolio\"]>div:nth-child(1)")
+    .each(function (i, v) {
+        var text = $(this).contents().get(0).nodeValue;
+
+        $(this).children()
+            .filter(":not(.hsnaExtLinks)")
+            .append("&nbsp;" +
+                    "<a href='http://fundamentus.com.br/detalhes.php?papel=" + text.trim() + "'><img src='http://fundamentus.com.br/img/ico_p_grafico.gif' width='8' height='8'></a>&nbsp;" +
+                    "<a href='http://www.bastter.com/mercado/acao/" + text.trim() + ".aspx'><img src='https://www.bastter.com/favicon.ico' width='12' height='12'></a>")
+            .addClass("hsnaExtLinks");
     });
 
-    $("tbody[ng-repeat=\"currentPosition in customerPosition.positions\"]>tr>td:nth-child(1)")
-    .each(function (v, i) {
-      $(this).html("<a href='http://fundamentus.com.br/detalhes.php?papel=" + $(this).text() + "'>" + $(this).text() + "</a>")
-    });
-
-    $("tr[ng-repeat=\"currentPosition in customerPosition.positions | tablesortOrderBy:sortFun\"]>td:nth-child(1)")
-    .each(function (v, i) {
-      $(this).html("<a href='http://fundamentus.com.br/detalhes.php?papel=" + $(this).text() + "'>" + $(this).text() + "</a>")
-    });
-  };
-
-  window.linkToBastter = function() {
-    $("tr[ng-repeat=\"stock in recommendation.portfolio | tablesortOrderBy:sortFun\"]>td:nth-child(2)")
-    .each(function (v, i) {
-      $(this).html("<a href='http://www.bastter.com/mercado/acao/" + $(this).text() + ".aspx'>" + $(this).text() + "</a>")
-    });
-
-    $("tbody[ng-repeat=\"currentPosition in customerPosition.positions\"]>tr>td:nth-child(1)")
-    .each(function (v, i) {
-      $(this).html("<a href='http://www.bastter.com/mercado/acao/" + $(this).text() + ".aspx'>" + $(this).text() + "</a>")
-    });
-
-    $("tr[ng-repeat=\"currentPosition in customerPosition.positions | tablesortOrderBy:sortFun\"]>td:nth-child(1)")
-    .each(function (v, i) {
-      $(this).html("<a href='http://fundamentus.com.br/detalhes.php?papel=" + $(this).text() + "'>" + $(this).text() + "</a>")
+    /* lista de ativos onde tenho posição */
+    $("tr[ng-repeat=\"currentPosition in positionController.customerPosition.positions | tablesortOrderBy:sortFun\"]>td:nth-child(1)")
+    .each(function (i, v) {
+      $(this).html($(this).text().trimRight() + "&nbsp;" +
+                   "<a href='http://fundamentus.com.br/detalhes.php?papel=" + $(this).text().trim() + "'><img src='http://fundamentus.com.br/img/ico_p_grafico.gif' width='8' height='8'></a>&nbsp;" +
+                   "<a href='http://www.bastter.com/mercado/acao/" + $(this).text().trim() + ".aspx'><img src='https://www.bastter.com/favicon.ico' width='12' height='12'></a>");
     });
   };
 } + ")();");
 
 // Estes botões chamarão as funções definidas acima
-var fundamentusButton = "<button onclick='linkToFundamentus()' class='btn-round btn-blue btn-block no-padding-left no-padding-right'>+ Fundamentus</button>";
-var bastterButton = "<button onclick='linkToBastter()' class='btn-round btn-gray-light btn-block no-padding-left no-padding-right'>+ Bastter</button>";
+var makeExternalLinksButton = "<button onclick='makeExternalLinks()' class='btn-round btn-blue btn-block no-padding-left no-padding-right'>+ Links externos</button>";
 
 // Só tente adicionar os botões após o documento terminar de carregar
 $(document).ready(function () {
-  $("nav.dashboard-menu").prepend(fundamentusButton + "<p />");
-  $("nav.dashboard-menu").prepend(bastterButton);
+  $("nav.dashboard-menu").prepend(makeExternalLinksButton + "<p/>");
 });
