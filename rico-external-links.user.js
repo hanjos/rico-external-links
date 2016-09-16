@@ -32,6 +32,14 @@ location.replace("javascript:(" + function() {
                    "<a href='http://fundamentus.com.br/detalhes.php?papel=" + $(this).text().trim() + "'><img src='http://fundamentus.com.br/img/ico_p_grafico.gif' width='8' height='8'></a>&nbsp;" +
                    "<a href='http://www.bastter.com/mercado/acao/" + $(this).text().trim() + ".aspx'><img src='https://www.bastter.com/favicon.ico' width='12' height='12'></a>");
     });
+
+    /* carteiras recomendadas */
+    $("tr[ng-repeat=\"stock in recommendation.portfolio | tablesortOrderBy:sortFun\"]>td:nth-child(2)")
+    .each(function (i, v) {
+      $(this).html($(this).text().trimRight() + "&nbsp;" +
+                   "<a href='http://fundamentus.com.br/detalhes.php?papel=" + $(this).text().trim() + "'><img src='http://fundamentus.com.br/img/ico_p_grafico.gif' width='8' height='8'></a>&nbsp;" +
+                   "<a href='http://www.bastter.com/mercado/acao/" + $(this).text().trim() + ".aspx'><img src='https://www.bastter.com/favicon.ico' width='12' height='12'></a>");
+    });
   };
 } + ")();");
 
