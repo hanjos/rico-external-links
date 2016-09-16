@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         External links for Rico.com.vc
 // @namespace    https://www.rico.com.vc
-// @version      0.4
+// @version      0.5
 // @description  Cria botões que adicionam links para análises de papéis e empresas específicas. Por enquanto são suportadas Fundamentus e Bastter.
 // @author       Humberto S. N. dos Anjos
 // @match        https://www.rico.com.vc/*
